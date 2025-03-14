@@ -1,0 +1,241 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<link rel="icon" type="image/png" href="./img/CILKGax.png">
+        <!-- Tiêu đề của trang dòng thời gian -->
+		<title>Ngày này, người bạn thân này</title>	    
+        <link type="text/css" rel="stylesheet" href="./css/default.css">
+        <link rel="stylesheet" href="./css/style.css">
+		<script type="text/javascript" src="./js/jquery.min.js"></script>
+		<script type="text/javascript" src="./js/jscex.min.js"></script>
+		<script type="text/javascript" src="./js/jscex-parser.js"></script>
+		<script type="text/javascript" src="./js/jscex-jit.js"></script>
+		<script type="text/javascript" src="./js/jscex-builderbase.min.js"></script>
+		<script type="text/javascript" src="./js/jscex-async.min.js"></script>
+		<script type="text/javascript" src="./js/jscex-async-powerpack.min.js"></script>
+		<script type="text/javascript" src="./js/functions.js" charset="utf-8"></script>
+		<script type="text/javascript" src="./js/love.js" charset="utf-8"></script>
+	    <style type="text/css"></style>
+
+</head>
+    <body>
+        <div class="buttons">
+            <a href="index.html" class="btn btn-bir">Sinh nhật</a>
+            <a href="timeline.html" class="btn btn-timeline">Ngày này, người bạn thân này</a>
+            <a href="gallery/index.html" class="btn btn-gallery">Special girl</a>
+        </div>
+        <div id="main">
+             <div id="wrap">
+                <div id="text">
+			        <div id="code">
+			      <font color="#3500ff"><span class="say"></span>Chúc mừng sinh nhật người bạn thân yêu của t!</span><br>
+                        <span class="say"></span><br>
+						<span class="say">Chúc m luôn mạnh khỏe, vui vẻ, ít căng thẳng, tràn đầy năng lượng tích cực và bình an.</span><br>
+						<span class="say">Mong rằng tuổi mới sẽ mang đến cho m nhiều niềm hạnh phúc, may mắn và một túi tiền luôn rủng rỉnh.</span><br>
+						<span class="say">Chúc m ngày càng trưởng thành, bản lĩnh hơn và luôn tỏa sáng theo cách đặc biệt nhất của riêng mình.</span><br>
+                        <span class="say">Tuổi mới hãy thật mạnh mẽ, tự tin theo đuổi ước mơ và chinh phục mọi mục tiêu trên con đường m đã chọn.</span><br>
+                        <span class="say">Và này, bớt thức khuya lại nhé, yêu thương bản thân nhiều hơn, dành thời gian cho những điều quan trọng (và cho t nữa nha!).</span><br>
+                        <span class="say">Cuối cùng "May you discover what it truly means to love and accept yourself in this lifetime!"</span><br>
+                        <span class="say">Cảm ơn vì đã luôn là một người bạn tuyệt vời bên cạnh t!💗 </span><br>
+						<span class="say"></span><br>
+                        <span class="say"><span class="space"></span>18 goin on 19 👋</span>
+                        <span class="say"> </span><br>
+                        <span class="say"><span class="space"></span>Vibin' and thrivin 💖🎈</span>
+                        <span class="say"> </span><br>
+                        <span class="say"><span class="space"></span>Happy Birthday, my bestie! 🎉🎂</span>
+						<span class="say"> </span><br>
+                        <span class="say"><span class="space"><span class="space"></span>-- Bạn thân 👭 --</span>
+			  </font></p>
+      </div>
+                </div>
+                <div id="clock-box">
+                  <div id="clock">
+				  </div>
+              </div>
+                <canvas id="canvas" width="1100" height="680"></canvas>
+            </div>
+            
+        </div>
+
+    <!-- Phần nhạc -->
+    <audio id="player" autoplay loop>
+        <source src="./music/music.mp3" type="audio/mp3" />
+    </audio>
+    <script>
+    (function(){
+        var audio = document.getElementById("player");
+        var canvas = $('#canvas');
+        var clock = document.getElementById("clock");
+        var startDate = new Date(2006, 3, 4);
+
+        if (!canvas[0].getContext) {
+            $("#error").show();
+            return false;        }
+
+        function updateClock() {
+            var now = new Date();
+            var diff = now - startDate; // Tính khoảng cách thời gian từ 26/03/2006 đến hiện tại
+
+            var seconds = Math.floor(diff / 1000) % 60;
+            var minutes = Math.floor(diff / (1000 * 60)) % 60;
+            var hours = Math.floor(diff / (1000 * 60 * 60)) % 24;
+            var days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            var years = Math.floor(days / 365);
+            var months = Math.floor((days % 365) / 30);
+            days = days % 30;
+
+            clock.innerHTML = `🕒 ${years} năm, ${months} tháng, ${days} ngày, ${hours} giờ, ${minutes} phút, ${seconds} giây`;
+        }
+        var width = canvas.width();
+        var height = canvas.height();        
+        canvas.attr("width", width);
+        canvas.attr("height", height);
+        var opts = {
+            seed: {
+                x: width / 2 - 20,
+                color: "rgb(190, 26, 37)",
+                scale: 2
+            },
+            branch: [
+                [535, 680, 570, 250, 500, 200, 30, 100, [
+                    [540, 500, 455, 417, 340, 400, 13, 100, [
+                        [450, 435, 434, 430, 394, 395, 2, 40]
+                    ]],
+                    [550, 445, 600, 356, 680, 345, 12, 100, [
+                        [578, 400, 648, 409, 661, 426, 3, 80]
+                    ]],
+                    [539, 281, 537, 248, 534, 217, 3, 40],
+                    [546, 397, 413, 247, 328, 244, 9, 80, [
+                        [427, 286, 383, 253, 371, 205, 2, 40],
+                        [498, 345, 435, 315, 395, 330, 4, 60]
+                    ]],
+                    [546, 357, 608, 252, 678, 221, 6, 100, [
+                        [590, 293, 646, 277, 648, 271, 2, 80]
+                    ]]
+                ]] 
+            ],
+            bloom: {
+                num: 700,
+                width: 1080,
+                height: 650,
+            },
+            footer: {
+                width: 1200,
+                height: 5,
+                speed: 10,
+            }
+        }
+
+        var tree = new Tree(canvas[0], width, height, opts);
+        var seed = tree.seed;
+        var foot = tree.footer;
+        var hold = 1;
+
+        canvas.click(function(e) {
+            var offset = canvas.offset(), x, y;
+            x = e.pageX - offset.left;
+            y = e.pageY - offset.top;
+            if (seed.hover(x, y)) {
+                hold = 0; 
+                canvas.unbind("click");
+                canvas.unbind("mousemove");
+                canvas.removeClass('hand');
+            }
+            if (audio.paused) {
+                audio.play().catch(error => console.log("Lỗi phát nhạc:", error));
+            }
+            updateClock();
+        }).mousemove(function(e){
+            var offset = canvas.offset(), x, y;
+            x = e.pageX - offset.left;
+            y = e.pageY - offset.top;
+            canvas.toggleClass('hand', seed.hover(x, y));
+        });
+
+        var seedAnimate = eval(Jscex.compile("async", function () {
+            seed.draw();
+            while (hold) {
+                $await(Jscex.Async.sleep(10));
+            }
+            while (seed.canScale()) {
+                seed.scale(0.95);
+                $await(Jscex.Async.sleep(10));
+            }
+            while (seed.canMove()) {
+                seed.move(0, 2);
+                foot.draw();
+                $await(Jscex.Async.sleep(10));
+            }
+        }));
+
+        var growAnimate = eval(Jscex.compile("async", function () {
+            do {
+    	        tree.grow();
+                $await(Jscex.Async.sleep(10));
+            } while (tree.canGrow());
+        }));
+
+        var flowAnimate = eval(Jscex.compile("async", function () {
+            do {
+    	        tree.flower(2);
+                $await(Jscex.Async.sleep(10));
+            } while (tree.canFlower());
+        }));
+
+        var moveAnimate = eval(Jscex.compile("async", function () {
+            tree.snapshot("p1", 240, 0, 610, 680);
+            while (tree.move("p1", 500, 0)) {
+                foot.draw();
+                $await(Jscex.Async.sleep(10));
+            }
+            foot.draw();
+            tree.snapshot("p2", 500, 0, 610, 680);
+
+            canvas.parent().css("background", "url(" + tree.toDataURL('image/png') + ")");
+            canvas.css("background", "#ffe");
+            $await(Jscex.Async.sleep(300));
+            canvas.css("background", "none");
+        }));
+
+        var jumpAnimate = eval(Jscex.compile("async", function () {
+            var ctx = tree.ctx;
+            while (true) {
+                tree.ctx.clearRect(0, 0, width, height);
+                tree.jump();
+                foot.draw();
+                $await(Jscex.Async.sleep(25));
+            }
+        }));
+
+        var textAnimate = eval(Jscex.compile("async", function () {
+            var start_date = new Date();
+		    var together = new Date();
+		    var year = 2006, month = 3, day = 25;  // 5. thay đổi ngày tháng năm yêu nhau tại đây hoặc ngày sinh của người mà bạn muốn chúc 03/12/
+            
+            var end_date = new Date(year, month - 1, day);
+            
+            total_months = (end_date.getFullYear() - start_date.getFullYear())*12 + (end_date.getMonth() - start_date.getMonth())
+            console.log(total_months)
+		    $("#code").show().typewriter();
+            $("#clock-box").fadeIn(500);
+            console.log('andev',together)
+        }));
+
+        var runAsync = eval(Jscex.compile("async", function () {
+            $await(seedAnimate());
+            $await(growAnimate());
+            $await(flowAnimate());
+            $await(moveAnimate());
+
+            textAnimate().start();
+
+            $await(jumpAnimate());
+        }));
+
+        runAsync().start();
+    })();
+    </script>
+</div>
+</body>
+</html>
